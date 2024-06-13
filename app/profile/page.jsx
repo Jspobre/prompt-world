@@ -14,7 +14,7 @@ const { data: session } = useSession();
           width={37}
           height={37}
           className="rounded-full"
-          
+          alt="Profile"
           />
     </section>
   )
