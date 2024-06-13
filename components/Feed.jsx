@@ -23,11 +23,11 @@ const Feed = () => {
 
   const [searchText, setSearchText] = useState("");
   const [posts, setPosts] = useState([]);
+  
   useEffect(() => {
       const fetchPosts = async () => {
           const response = await fetch("/api/prompt");
           const data = await response.json();
-        console.log(data);
            setPosts(data)
       }
       fetchPosts()

@@ -3,21 +3,44 @@
 import { useSession } from "next-auth/react"
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
-const Profile = () => {
+import Profile from "@components/Profile";
+
+
+const ProfilePage = () => {
 const { data: session } = useSession();
 
+const [posts, setPosts ] = useState("");
+
+useEffect(() => {
+  const fetchPosts = async () => {
+      const response = await fetch(`/api/users/${session?.user.id}/posts`);
+      const data = await response.json();
+       setPosts(data)
+  }
+  if(session?.user.id){
+    fetchPosts()
+  }
+}, [])
+
+const handleEdit = () => {
+  
+}
+
+const handleDelete = async () => {
+  
+}
   return (
-    <section>
-          <Image 
-          src={session?.user.image}
-          width={37}
-          height={37}
-          className="rounded-full"
-          alt="Profile"
-          />
-    </section>
+      <Profile 
+      name="My"
+      desc="Welcome to your personalized profile page"
+      data={posts}
+      handleEdit={handleEdit}
+      handleDelete={handleDelete}
+      />
   )
 }
 
-export default Profile
+export default ProfilePage
