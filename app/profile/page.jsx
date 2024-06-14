@@ -12,7 +12,7 @@ import Profile from "@components/Profile";
 const ProfilePage = () => {
 const { data: session } = useSession();
 
-const [posts, setPosts ] = useState("");
+const [posts, setPosts ] = useState([]);
 
 useEffect(() => {
   const fetchPosts = async () => {
